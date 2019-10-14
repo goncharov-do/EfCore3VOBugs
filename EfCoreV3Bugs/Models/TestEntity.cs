@@ -7,7 +7,6 @@ namespace EfCoreV3Bugs.Models
     public class TestEntity
     {
         public int Id { get; set; }
-        public ValueObject1 VO1 { get; set; }
-        public ValueObject2 VO2 { get; set; }
+        public HashSet<ValueObject1> VoCollection { get; set; }
     }
 }

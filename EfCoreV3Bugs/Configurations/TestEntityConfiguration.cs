@@ -14,8 +14,7 @@ namespace EfCoreV3Bugs.Configurations
             builder.HasKey(c => c.Id);
             builder.Property(c => c.Id).ValueGeneratedOnAdd();
 
-            builder.OwnsOne(c => c.VO1, t => { t.Property(c => c.SomeNonNullableProperty); });
-            builder.OwnsOne(c => c.VO2, t => { t.Property(a => a.SomeNullableProperty).IsRequired(false); });
+            builder.OwnsMany(c => c.VoCollection, t => { t.Property(c => c.SomeNonNullableProperty); });
         }
     }
 }
