@@ -45,6 +45,7 @@ namespace EfCoreV3Bugs
 
                 if (entity.VoCollection.Contains(new ValueObject1(false)) == false)
                 {
+                    // TODO: exception thrown only on this step
                     throw new Exception("Value object not found using 'Contains', but should be");
                 }
             }
