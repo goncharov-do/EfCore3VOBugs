@@ -37,7 +37,7 @@ namespace EfCoreV3Bugs
             // Act & Assert:
             using (var context = new DataContext())
             {
-                var entity = context.TestEntities.First();
+                var entity = context.TestEntities.Include(c=>c.VoCollection).First();
                 var expectTrue = entity.VoCollection.Contains(new ValueObject1(false));
                 if (expectTrue == false)
                 {
