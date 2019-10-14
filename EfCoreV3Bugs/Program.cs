@@ -27,10 +27,9 @@ namespace EfCoreV3Bugs
                 context.SaveChanges();
 
                 // Verify same scenario in memory
-                var expectTrue = entity.VoCollection.Contains(new ValueObject1(false));
-                if (!expectTrue)
+                if (!entity.VoCollection.Contains(new ValueObject1(false)))
                 {
-                    throw new Exception("Value object not found, but should be 1");
+                    throw new Exception("Value object not found in memory in original object, but should be 1");
                 }
             }
             
@@ -38,10 +37,15 @@ namespace EfCoreV3Bugs
             using (var context = new DataContext())
             {
                 var entity = context.TestEntities.Include(c=>c.VoCollection).First();
-                var expectTrue = entity.VoCollection.Contains(new ValueObject1(false));
-                if (expectTrue == false)
+
+                if (entity.VoCollection.All(c => c != new ValueObject1(false)))
                 {
-                    throw new Exception("Value object not found, but should be 2");
+                    throw new Exception("Value object not found using 'Any', but should be");
+                }
+
+                if (entity.VoCollection.Contains(new ValueObject1(false)) == false)
+                {
+                    throw new Exception("Value object not found using 'Contains', but should be");
                 }
             }
         }
