@@ -21,7 +21,7 @@ namespace EfCoreV3Bugs
 
                 var entity = new TestEntity()
                 {
-                    VoCollection = new HashSet<ValueObject1>(new List<ValueObject1>() {new ValueObject1(false)})
+                    VoCollection = new List<ValueObject1>(new List<ValueObject1>() {new ValueObject1(false)})
                 };
                 context.TestEntities.Add(entity);
                 context.SaveChanges();
